@@ -2,8 +2,9 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const weekSchema = new Schema({
-    name: {
+    number: {
         type: Number,
+        unique:true
         //required: true
     },
     dates: [{

@@ -1,18 +1,26 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const sessionSchema = new Schema({
-    start_date: {
-        type: Date,
-        required: true
+  start_date: {
+    day: {
+      type: Number
     },
-    number_of_weeks: {
-        type: Number,
-        required: true
-    },   
+    month: {
+      type: Number
+    },
+    year: {
+      type: Number
+    }
+  },
+  start_date_iso: {
+    type: Date,
+    unique: true
+  },
+  number_of_weeks: {
+    type: Number,
+    required: true
+  }
+});
 
-})
-
-
-
-module.exports = sessionSchema
+module.exports = sessionSchema;
