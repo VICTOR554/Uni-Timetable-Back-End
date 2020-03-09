@@ -8,14 +8,14 @@ const activitySchema = new Schema({
     },
     lecturer_id: {
         type: Schema.Types.ObjectId,
-       // required: true
+       required: true
     },
-    start_date_time_iso: {
-        type: Date,
+    start_date_time: {
+        type: Number,
         required: true
     },
-    end_date_time_iso:{
-        type: Date,
+    end_date_time:{
+        type: Number,
         required: true
     },
     location: {

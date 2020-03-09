@@ -26,15 +26,25 @@ const getOneTerm = function(req, res){
 }
 
 const createTerm = function(req, res){
-
+    models.Term.create(req.body).then(d=>{
+        res.status(200).send(d)
+    }).catch(e=>{res.status(400).send(e)})
 }
 
 const editTerm = function(req, res){
-
+    models.Term.updateOne({number: req.params.number}, req.body).then(d=>{
+        res.status(200).send(d)
+    }).catch(e=>{res.status(400).send(e)})
 }
 
 const deleteTerm = function(req, res){
-
+    models.Term.deleteOne({code: req.param.number})
+      .then(doc => {
+        res.send(doc);
+      })
+      .catch(e => {
+        res.status(400).send(e);
+      });
 }
 
 module.exports={

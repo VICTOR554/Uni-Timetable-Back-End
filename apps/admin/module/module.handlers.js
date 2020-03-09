@@ -27,7 +27,7 @@ const getAllModules = function(req, res) {
 const createModule = function(req, res) {
     models.Module.create(req.body)
       .then(doc => {
-        console.log("new task:", doc);
+        console.log("new module:", doc);
         res.send(doc);
       })
       .catch(e => {
@@ -36,17 +36,19 @@ const createModule = function(req, res) {
   };
   
   const editModule = function(req, res) {
-      
+      models.Module.updateOne({code: req.params.code}).then(d=>{
+        res.status(200).send('edited module', d)
+      }).catch(e=>{res.status(402).send(e)})
   };
   
   const deleteModule = function(req, res) {
-    models.Module.deleteOne(req.body)
+    models.Module.deleteOne({code: req.param.code})
       .then(doc => {
-        console.log("new task:", doc);
+        //console.log(doc);
         res.send(doc);
       })
       .catch(e => {
-        console.log(e);
+        res.status(400).send(e);
       });
   };
 

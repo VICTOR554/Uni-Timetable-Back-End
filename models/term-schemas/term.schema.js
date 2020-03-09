@@ -3,8 +3,8 @@ const Schema = mongoose.Schema
 
 const termSchema = new Schema({
     number: {
-        type: String,
-        enum: ['1','2','3'],
+        type: Number,
+        enum: [1,2,3],
         required: true,
         unique: true
     },
