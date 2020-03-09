@@ -12,7 +12,7 @@ const getAllModules = function(req, res) {
   };
   
   const getOneModule = function() {
-    models.Module.findOne({ username: req.params.username })
+    models.Module.findOne({ code: req.params.code })
       .then(d => {
         res.send(d);
       })

@@ -3,15 +3,71 @@ const moment = require("moment");
 const models = require("../../../models/model");
 
 const getAllSessions = function(req, res) {
+  models.Session.find()
+  .then(d => {
+    res.send(d);
+  })
+  .catch(e => {
+    console.log(e);
+    res.send(e);
+  });
   res.send("hi");
 };
 
 const getOneSession = function(req, res) {
+  models.Session.findOne({ id: req.params.id })
+      .then(d => {
+        res.send(d);
+      })
+      .catch(e => {
+        console.log(e);
+        res.send(e);
+      });
     
 };
 
 const createSession = function(req, res) {
-  start_date_iso = moment(req.body.start_date_iso);
+
+  models.Session.find().then(doc=>{
+    if(doc!= null || doc.length!=0){
+        getWeeks(req, res)
+      
+      models.Session.create(req.body)
+      .then(doc => {
+        console.log("new session:", doc);
+        res.status(200).send(doc)
+      })
+      .catch(e => {
+        console.log("error with the sessions:", e);
+        res.status(402).send(e)
+      });
+    }else{
+      res.status().send('delete old session first. or update instead')
+    }
+
+  })
+
+
+
+};
+
+const editSession = function(req, res) {
+ 
+  models.Session.find({_id: req.params.id}).then(d=>{
+    if(req.body.start_date){
+      models.Week.deleteMany().then({
+
+      })
+    }
+  }).catch(e=>{res.status().send(e)})
+};
+
+const deleteSession = function(req, res) {};
+
+
+
+const getWeeks = function(req, res){
+  start_date = moment(req.body.start_date);
   nweeks = req.body.number_of_weeks;
 
   for (i = 1; i <= nweeks; i++) {
@@ -20,12 +76,12 @@ const createSession = function(req, res) {
     week.number = i;
 
     for (j = 1; j <= 7; j++) {
-      dates.push(start_date_iso.toString());
-      start_date_iso = moment(start_date_iso).add(1, "days");
+      dates.push(start_date);
+      start_date = moment(start_date).add(1, "days");
     }
     week.dates = dates;
     
-    models.Week.create(week)
+    models.Week.updateOne({number: week.number},week,{upsert: true})
     .then(d => {
       console.log("new week:", d);
     })
@@ -34,32 +90,8 @@ const createSession = function(req, res) {
       res.status(402).send(e)
     });
   }
-
-  models.Session.create(req.body)
-  .then(doc => {
-    console.log("new session:", doc);
-    res.status(200).send(doc)
-  })
-  .catch(e => {
-    console.log("error with the sessions:", e);
-    res.status(402).send(e)
-  });
-
-};
-
-const editSession = function(req, res) {};
-
-const deleteSession = function(req, res) {};
-
-//MIDDLEWARE
-async function convertDates(req, res, next) {
-  const start_date_iso = new Date(
-    `${req.body.start_date.year}, ${req.body.start_date.month}, ${req.body.start_date.day}`
-  );
-  req.body.start_date_iso = start_date_iso;
-
-  next();
 }
+
 
 module.exports = {
   getOneSession,
@@ -67,6 +99,4 @@ module.exports = {
   createSession,
   editSession,
   deleteSession,
-
-  convertDates
 };

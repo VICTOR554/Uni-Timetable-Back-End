@@ -8,13 +8,13 @@ const activitySchema = new Schema({
     },
     lecturer_id: {
         type: Schema.Types.ObjectId,
-        required: true
+       // required: true
     },
-    start_date_time: {
+    start_date_time_iso: {
         type: Date,
         required: true
     },
-    end_date_time:{
+    end_date_time_iso:{
         type: Date,
         required: true
     },

@@ -3,18 +3,7 @@ const Schema = mongoose.Schema;
 
 const sessionSchema = new Schema({
   start_date: {
-    day: {
-      type: Number
-    },
-    month: {
-      type: Number
-    },
-    year: {
-      type: Number
-    }
-  },
-  start_date_iso: {
-    type: Date,
+    type: Number,
     unique: true
   },
   number_of_weeks: {

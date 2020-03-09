@@ -11,11 +11,11 @@ const taskSchema = new Schema({
         required: true
     },
     due_date_time: {
-        type: Date,
+        type: Number,
         required: true
     },
     created_date_time: {
-        type: Date,
+        type: Number,
         required: true
     },
     body: {

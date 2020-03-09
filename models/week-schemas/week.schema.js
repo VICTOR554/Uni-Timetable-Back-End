@@ -8,7 +8,7 @@ const weekSchema = new Schema({
         //required: true
     },
     dates: [{
-        type: Date,
+        type: Number,
         //required: true
     }],
 })
