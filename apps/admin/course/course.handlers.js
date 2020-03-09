@@ -1,5 +1,3 @@
-const moment = require("moment");
-
 const models = require("../../../models/model");
 
 const getAllCourses = function(req, res) {
