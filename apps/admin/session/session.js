@@ -7,6 +7,6 @@ router.get('/', handlers.getAllSessions)
 router.get('/:id', handlers.getOneSession)
 router.post('/new', handlers.createSession)
 router.put('/edit/:id', handlers.editSession)
-router.delete('/:id', handlers.deleteSession)
+router.delete('/', handlers.deleteSession)
 
 module.exports = router

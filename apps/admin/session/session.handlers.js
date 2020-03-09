@@ -11,11 +11,10 @@ const getAllSessions = function(req, res) {
     console.log(e);
     res.send(e);
   });
-  res.send("hi");
 };
 
 const getOneSession = function(req, res) {
-  models.Session.findOne({ id: req.params.id })
+  models.Session.findOne({ _id: req.params.id })
       .then(d => {
         res.send(d);
       })
@@ -52,17 +51,25 @@ const createSession = function(req, res) {
 };
 
 const editSession = function(req, res) {
- 
-  models.Session.find({_id: req.params.id}).then(d=>{
+models.Session.find({_id: req.params.id}).then(d=>{
     if(req.body.start_date){
-      models.Week.deleteMany().then({
-
-      })
+      models.Week.deleteMany().then(doc=>{
+        getWeeks(req, res)
+        models.Session.updateOne({_id: req.params.id},req.body,{upsert: true}).then(d=>{
+          res.status(200).send(d)
+        }).catch(err=>{res.status(400).send(err)})
+      }).catch(e=>{res.status(402).send(e)})
     }
-  }).catch(e=>{res.status().send(e)})
+  }).catch(e=>{res.status(402).send(e)})
 };
 
-const deleteSession = function(req, res) {};
+const deleteSession = function(req, res) {
+  models.Session.deleteMany().then(d=>{
+    models.Week.deleteMany().then(doc=>{
+      res.status(200).send('Deleted session')
+    }).catch(e=>{res.status(400).send(e)})
+  }).catch(e=>{res.status(400).send(e)})
+};
 
 
 
