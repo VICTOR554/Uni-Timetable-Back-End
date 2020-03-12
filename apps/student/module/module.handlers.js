@@ -12,7 +12,7 @@ const getAllModules = function(req, res) {
 };
 
 const getOneModule = function() {
-  models.Module.findOne({ username: req.params.username })
+  models.Module.findOne({_id: req.params.id })
     .then(d => {
       res.send(d);
     })
@@ -27,8 +27,4 @@ const getOneModule = function() {
 module.exports = {
   getAllModules,
   getOneModule,
-
-  createNote,
-  editNote,
-  deleteNote
 };

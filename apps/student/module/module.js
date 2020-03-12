@@ -1,9 +1,10 @@
 const express = require('express')
 const router = express.Router()
 
-const handlers = require('./activity.handlers')
+const handlers = require('./module.handlers')
 
-
+router.get('/:code', handlers.getOneModule)
+router.get('/', handlers.getAllModules)
 
 
 

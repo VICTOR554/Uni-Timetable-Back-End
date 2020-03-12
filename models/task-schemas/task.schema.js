@@ -4,7 +4,6 @@ const Schema = mongoose.Schema
 const taskSchema = new Schema({
     module_code: {
         type: String,
-        //required: true,
     },
     title: {
         type: String,
@@ -22,6 +21,11 @@ const taskSchema = new Schema({
         type: String,
         //required: true
     },
+    isflagged: {
+        type: Boolean,
+        required: true,
+        default: false
+    }
 
 })
 

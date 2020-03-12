@@ -3,7 +3,8 @@ const models = require('../../../models/model')
 
 const getAllNotes = function(req, res){
     models.Note.find().then(d => {
-        res.send(d)
+        res.send("d")
+        console.log(d)
     }
     ).catch(e => {
         console.log(e)
@@ -24,14 +25,18 @@ const getOneNote = function(){
 const createNote = function(req, res){
     models.Note.create(req.body).then(doc =>{
         console.log('new task:', doc)
-        res.send(doc)
+        res.status(200).send(doc)
     }).catch(e =>{
         console.log(e)
+        res.status(400).send(e)
     })
 }
 
 const editNote = function(req, res){
-
+    models.Note.updateOne(req.body).then(doc =>{
+        console.log(doc)
+        res.status(200).send(doc)
+    }).catch(e =>{res.status(400).send(e)})
 }
 
 const deleteNote = function(req, res){

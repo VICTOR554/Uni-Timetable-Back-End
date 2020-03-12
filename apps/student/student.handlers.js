@@ -8,33 +8,15 @@ const editStudent = function(req, res){
     }).catch(e =>{
         console.log(e)
     })
-
 }
 
-
-
-
-const createStudent = function(req, res){
-    models.Student.create(req.body).then(doc =>{
-        console.log('new student:', doc)
-        res.send(doc)
-    }).catch(e =>{
-        console.log(e)
-    })
+const getStudent = function(req, res){
+    models.Student.findOne({number: req.student_number}).then(d=>{
+        res.status(200).send(d)
+    }).catch(e=>{res.status(400).send(e)})
 }
-
-const deleteStudent = function(req, res){
-    models.Student.deleteOne(req.body).then(doc =>{
-        console.log('deleted student:', doc)
-        res.send(doc)
-    }).catch(e =>{
-        console.log(e)
-    })
-}
-
 
 module.exports = {
     editStudent,
-    createStudent,
-    deleteStudent
+    getStudent
 }

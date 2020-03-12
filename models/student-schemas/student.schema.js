@@ -23,7 +23,8 @@ const studentSchema = new Schema({
         //required: true
     },
     modules: [{
-        type: String
+        type: String,
+        required: true
     }]
 
 })

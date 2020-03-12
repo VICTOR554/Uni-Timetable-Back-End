@@ -21,8 +21,7 @@ const getOneSession = function(req, res) {
       .catch(e => {
         console.log(e);
         res.send(e);
-      });
-    
+      }); 
 };
 
 const createSession = function(req, res) {
@@ -45,8 +44,6 @@ const createSession = function(req, res) {
     }
 
   })
-
-
 
 };
 

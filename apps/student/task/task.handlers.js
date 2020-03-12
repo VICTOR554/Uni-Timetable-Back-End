@@ -20,8 +20,6 @@ const getOneTask = function(req, res){
         console.log(e)
         res.send(e)
     })
-
-
 }
 
 const createTask = function(req, res){
@@ -34,7 +32,9 @@ const createTask = function(req, res){
 }
 
 const editTask = function(req, res){
-
+    models.Task.updateOne({_id: req.params.id}).then(d=>{
+        res.status(200).send(d)
+    }).catch(e=>{res.status(400).send(e)})
 }
 
 const deleteTask = function(req, res){
