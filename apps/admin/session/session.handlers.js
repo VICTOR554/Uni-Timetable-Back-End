@@ -74,7 +74,9 @@ const deleteSession = function(req, res) {
 
 
 const getWeeks = function(req, res){
-  start_date = moment(req.body.start_date);
+  //start_date = Date(req.body.start_date)
+  start_date = moment.unix(req.body.start_date);
+  console.log(start_date)
   nweeks = req.body.number_of_weeks;
 
   for (i = 1; i <= nweeks; i++) {
@@ -85,12 +87,13 @@ const getWeeks = function(req, res){
     for (j = 1; j <= 7; j++) {
       dates.push(start_date);
       start_date = moment(start_date).add(1, "days");
+      console.log(start_date)
     }
     week.dates = dates;
     
     models.Week.updateOne({number: week.number},week,{upsert: true})
     .then(d => {
-      console.log("new week:", d);
+      //console.log("new week:", d);
     })
     .catch(e => {
       console.log("error with the weeks:", e);
