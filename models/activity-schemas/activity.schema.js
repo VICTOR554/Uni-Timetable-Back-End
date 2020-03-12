@@ -6,7 +6,7 @@ const activitySchema = new Schema({
         type: String,
         required: true
     },
-    lecturer_id: {
+    lecturer_number: {
         type: Schema.Types.ObjectId,
        required: true
     },
@@ -28,5 +28,10 @@ const activitySchema = new Schema({
         required: true
     },
 })
+
+activitySchema.index({ module_code: 1, start_date_time: 1}, { unique: true })
+activitySchema.index({ module_code: 1, start_date_time: 1, type: 1}, { unique: true })
+activitySchema.index({ start_date_time: 1, lecturer_number: 1}, { unique: true })
+activitySchema.index({ start_date_time: 1, location: 1}, { unique: true })
 
 module.exports = activitySchema
