@@ -11,7 +11,7 @@ const noteSchema = new Schema({
         //required: true
     },
     date_time: {
-        type: Date,
+        type: Number,
         required: true
     },
     body: {
