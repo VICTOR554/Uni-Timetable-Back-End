@@ -2,20 +2,27 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 var jwt = require('jsonwebtoken')
-
+const cors = require('cors')
 const port = (process.env.PORT || 3000)
 
 const models = require('./models/model')
 const student = require('./apps/student/student')
 const admin = require('./apps/admin/admin')
 
-
-
 require('dotenv').config()
+
+
+
+
 
 app.use(bodyParser.json())
 
 app.use(express.static('./apidoc')) 
+
+// Enable CORS
+app.use(cors())
+
+
 
 app.post('/login', function (req, res) {
     var filter = { number: req.body.number }
@@ -47,10 +54,6 @@ app.post('/login', function (req, res) {
 
 app.use('/admin', admin)
 
-app.get('/', function(req, res){
-    res.send('hi guys')
-})
-
 app.use('/student', ensureToken, function (req, res) {
     jwt.verify(req.token, 'my_secret_key', function (err, data) {
         if (err) {
@@ -62,14 +65,14 @@ app.use('/student', ensureToken, function (req, res) {
 })
 
 function ensureToken(req, res, next) {
-    const bearerHeader = req.headers.auth
+    const bearerHeader = req.headers.authorization
     if (typeof bearerHeader !== 'undefined') {
         const bearer = bearerHeader.split(" ")
         const bearerToken = bearer[1]
         req.token = bearerToken;
         const student = jwt.decode(bearerToken)
         req.student = student
-        req.student_number = student.student_number
+        req.student_number = student.number
         next()
     } else {
         res.sendStatus(403)

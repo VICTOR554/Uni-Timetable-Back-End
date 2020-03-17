@@ -23,33 +23,23 @@ const getOneActivity = function(req, res) {
 };
 
 const createActivity = function(req, res) {
-    models.Activity.findOne(req.body).then(doc=>{
-        res.send(doc)
+    models.Activity.create(req.body).then(doc=>{
+        res.status(200).send(doc)
         console.log(doc)
-    }).catch(e=>res.status().send(e))
+    }).catch(e=>res.status(400).send(e))
 };
 
-const editActivity = function(req, res) {};
+const editActivity = function(req, res) {
+  models.Activity.findOneAndUpdate({_id: req.params.id}, req.body).then(d=>{
+    res.status(200).send(d)
+  }).catch(e=>{res.status(400).send(e)})
+};
 
-const deleteActivity = function(req, res) {};
-
-
-
-//MIDDLEWARE
-async function convertDates(req, res, next) {
-    const start_date_iso = new Date(
-      `${req.body.start_date.year}, ${req.body.start_date.month}, ${req.body.start_date.day},
-        ${req.body.start_date.hour}`
-    );
-    const end_date_iso = new Date(
-        `${req.body.end_date.year}, ${req.body.end_date.month}, ${req.body.end_date.day},
-          ${req.body.end_date.hour}`
-      );
-    req.body.start_date_time_iso = start_date_iso;
-    req.body.end_date_time_iso = end_date_iso;
-  
-    next();
-  }
+const deleteActivity = function(req, res) {
+  models.Activity.deleteOne({_id: req.params.id}).then(d=>{
+    res.status(200).send(d)
+  }).catch(e=>{res.status(400).send(e)})
+};
 
 
 module.exports = {
@@ -58,8 +48,4 @@ module.exports = {
   createActivity,
   editActivity,
   deleteActivity,
-
-
-
-  convertDates
 };
