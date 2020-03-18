@@ -18,9 +18,12 @@ const studentSchema = new Schema({
         type: String,
         // required: true
     },
-    course_code: {
-        type: String,
+    course_id: {
+        type: Number,
         //required: true
+    },
+    specialism: {
+        type: String
     },
     modules: [{
         type: String,

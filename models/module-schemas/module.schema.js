@@ -12,7 +12,7 @@ const moduleSchema = new Schema({
         unique: true
     },
     course_id: {
-        type: Schema.Types.ObjectId,
+        type: Number,
         required: true
     }
 
