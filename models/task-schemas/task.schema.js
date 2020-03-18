@@ -21,12 +21,20 @@ const taskSchema = new Schema({
         type: String,
         //required: true
     },
-    isflagged: {
+    is_flagged: {
         type: Boolean,
         required: true,
         default: false
+    },
+    is_completed: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    student_number:{
+        type: Number,
+        required: true
     }
-
 })
 
 module.exports = taskSchema
