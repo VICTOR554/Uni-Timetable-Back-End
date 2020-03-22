@@ -4,7 +4,7 @@ const router = express.Router()
 const handlers = require('./note.handlers')
 
 router.post('/new', handlers.createNote)
-router.get('/:id', handlers.getOneNote)
+router.get('/one/:id', handlers.getOneNote)
 router.get('/', handlers.getAllNotes)
 router.put('/edit/:id', handlers.editNote)
 router.delete('/delete/:id', handlers.deleteNote)
