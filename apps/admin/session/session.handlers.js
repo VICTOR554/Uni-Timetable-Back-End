@@ -72,7 +72,7 @@ const deleteSession = function(req, res) {
 
 const getWeeks = function(req, res){
   //start_date = Date(req.body.start_date)
-  start_date = moment.unix(req.body.start_date);
+  start_date = moment.unix(req.body.start_date).format('X');
   console.log(start_date)
   nweeks = req.body.number_of_weeks;
 
@@ -83,7 +83,7 @@ const getWeeks = function(req, res){
 
     for (j = 1; j <= 7; j++) {
       dates.push(start_date);
-      start_date = moment(start_date).add(1, "days");
+      start_date = moment.unix(start_date).add(1, "days").format('X');
       console.log(start_date)
     }
     week.dates = dates;
