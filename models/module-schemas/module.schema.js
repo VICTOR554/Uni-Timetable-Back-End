@@ -24,4 +24,4 @@ moduleSchema.virtual('students', {
     justOne: false
 })
 
-module.exports = moduleSchema 
+module.exports = moduleSchema
