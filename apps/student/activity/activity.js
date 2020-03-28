@@ -3,8 +3,10 @@ const router = express.Router()
 
 const handlers = require('./activity.handlers')
 
-router.get('/week/:week_number', handlers.getOneActivity)
-router.get('/day/:date', handlers.getOneDayActivities)
+router.get('/:id', handlers.getOneActivity)
+//router.get('/day/:start_date_time', handlers.getOneDayActivities)
+
+router.get('/day/:start_date_time', handlers.getModules, handlers.getActivities, handlers.getOneDayActivities)
 
 
 

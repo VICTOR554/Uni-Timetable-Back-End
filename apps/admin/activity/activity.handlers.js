@@ -26,7 +26,10 @@ const createActivity = function(req, res) {
     models.Activity.create(req.body).then(doc=>{
         res.status(200).send(doc)
         console.log(doc)
-    }).catch(e=>res.status(400).send(e))
+    }).catch(e=>{
+      console.log(e)
+      res.status(400).send(e)
+    })
 };
 
 const editActivity = function(req, res) {
