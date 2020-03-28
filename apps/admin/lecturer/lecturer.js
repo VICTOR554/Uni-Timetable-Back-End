@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const handlers = require('./Lecturer.handlers')
+const handlers = require('./lecturer.handlers')
 
 router.get('/', handlers.getAllLecturers)
 router.get('/:number', handlers.getOneLecturer)

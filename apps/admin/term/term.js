@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const handlers = require('./Term.handlers')
+const handlers = require('./term.handlers')
 
 router.get('/', handlers.getAllTerms)
 router.get('/:number', handlers.getOneTerm)

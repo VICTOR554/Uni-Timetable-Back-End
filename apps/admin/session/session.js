@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const handlers = require('./Session.handlers')
+const handlers = require('./session.handlers')
 
 router.get('/', handlers.getAllSessions)
 router.get('/:id', handlers.getOneSession)
