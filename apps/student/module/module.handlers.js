@@ -11,8 +11,8 @@ const getAllModules = function(req, res) {
     });
 };
 
-const getOneModule = function() {
-  models.Module.findOne({_id: req.params.id })
+const getOneModule = function(req, res) {
+  models.Module.findOne({code: req.params.code })
     .then(d => {
       res.send(d);
     })
