@@ -3,7 +3,7 @@ const router = express.Router()
 
 const handlers = require('./location.handlers')
 
-router.get('/:name', handlers.getOneLocation)
+router.get('/:key', handlers.getOneLocation)
 router.get('/', handlers.getAllLocations)
 
 

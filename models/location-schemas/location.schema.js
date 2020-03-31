@@ -14,6 +14,11 @@ const locationSchema = new Schema({
   lng: {
     type: Number,
     required: true
+  },
+  key: {
+    type: String,
+    required: true,
+    unique: true
   }
 
 });
