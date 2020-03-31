@@ -22,6 +22,7 @@ const Task = user.model('Tasks', require('./task-schemas/task.schema'), 'tasks')
 const Session = user.model('Session', require('./session-schemas/session.schema'), 'sessions')
 const Term = user.model('Term', require('./term-schemas/term.schema'), 'terms')
 const Week = user.model('Week', require('./week-schemas/week.schema'), 'weeks')
+const Location = user.model('Location', require('./location-schemas/location.schema'), 'locations')
 
 // Module.create({
 //     name: "Software Engineering",
@@ -43,6 +44,7 @@ module.exports = {
     Task,
     Session,
     Term,
-    Week
+    Week,
+    Location
 
 }
