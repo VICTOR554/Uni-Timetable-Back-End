@@ -1,7 +1,7 @@
 const models = require("../../../models/model");
 
 const getOneLocation = function(req, res) {
-    models.Location.findOne({ name: req.params.name })
+    models.Location.findOne({ key: req.params.key })
         .then(d => {
           res.send(d);
         })
@@ -34,7 +34,7 @@ const getOneLocation = function(req, res) {
       
   };
   const updateLocation = function(req, res) {
-    models.Location.updateOne({ name: req.params.name })
+    models.Location.updateOne({ key: req.params.key })
         .then(d => {
           res.send(d);
         })
@@ -46,7 +46,7 @@ const getOneLocation = function(req, res) {
   };
 
   const deleteOneLocation = function(req, res) {
-    models.Location.findOneAndDelete({ name: req.params.name })
+    models.Location.findOneAndDelete({ key: req.params.key })
         .then(d => {
           res.send(d);
         })

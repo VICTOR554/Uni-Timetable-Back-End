@@ -1,7 +1,7 @@
 const models = require("../../../models/model");
 
 const getOneLocation = function(req, res) {
-  models.Location.findOne({ name: req.params.name })
+  models.Location.findOne({ key: req.params.key })
     .then(d => {
       res.send(d);
     })
