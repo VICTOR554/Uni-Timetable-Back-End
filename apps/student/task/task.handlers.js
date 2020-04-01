@@ -5,7 +5,7 @@ const getAllTasks_onSchedule = function(req, res){
     console.log('oooo')
     date = +moment().format('X')
     console.log(date)
-    models.Task.find({ student_number: req.student_number, is_completed: false, due_date_time: {$gt: date}})
+    models.Task.find({ student_number: req.student_number, is_completed: false})
     .sort( { create_date_time: -1 } )
     .then(d => {
       res.send(d);
