@@ -2,7 +2,7 @@ const models = require('../../../models/model')
 const moment = require('moment')
 
 const getAllWeeks = function(req, res){
-    models.Week.find()
+    models.Week.find().sort({number: 1})
   .then(d => {
     res.send(d);
   })
@@ -33,16 +33,6 @@ const getOneWeekByDate = function(req, res){
     let end_date = moment.unix(date).endOf('day').format('X')
     console.log(end_date)
 
-    //     start
-    // 1584547916400
-
-   
-    //     input               db
-    // 1584547951487   1584493200000
-
-    //     end
-    // 1584548002799
-
     let found = false
     let foundWeek
     models.Week.find()
@@ -54,10 +44,6 @@ const getOneWeekByDate = function(req, res){
                 for(j=0; j<dates.length;j++){
                     console.log(dates[j])
                     if(dates[j]>start_date && dates[j]<end_date){
-                        // console.log(Date(moment(date).toString()))
-                        // console.log(moment(moment.unix(dates[j]), 'YYYY').isSame(moment(moment.unix(date), 'YYYY'), 'year'))
-                        // console.log(moment.unix(dates[j]).isSame(moment.unix(date), 'd'))
-                //     if(moment(dates[j]).isSame(moment(date), 'year') === true ){
                         found = true
                         foundWeek = d[i]
                         console.log(foundWeek)
