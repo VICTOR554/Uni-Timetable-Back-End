@@ -55,6 +55,21 @@ const getActivities = async function(req, res, next) {
       end_date_time
     );
     activities = await activities.concat(module_activities);
+
+    activities.sort((a, b) => {
+      // Use toUpperCase() to ignore character casing
+      const startA = a.start_date_time;
+      const startB = b.start_date_time;
+    
+      let comparison = 0;
+      if (startA > startB) {
+        comparison = 1;
+      } else if (startA < startB) {
+        comparison = -1;
+      }
+      return comparison;
+    })
+
     req.activities = activities;
     return activities;
   });
