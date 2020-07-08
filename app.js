@@ -37,11 +37,11 @@ app.post('/login', function (req, res) {
                 })    
             } else {
                 console.log('wrong password')
-                res.json({ text: 'wrong username or password' })
+                res.json({ text: 'wrong password' })
             }
         } else {
             console.log(`account doesn't exist`)
-            res.json({ text: 'wrong username or password' })
+            res.json({ text: 'account does not exist' })
         }
     }).catch(e => {
         console.log(e)
