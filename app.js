@@ -40,8 +40,8 @@ app.post('/login', function (req, res) {
                 res.json({ text: 'wrong password' })
             }
         } else {
-            console.log(`account doesn't exist`)
-            res.json({ text: 'account does not exist' })
+            console.log(`User Id is not registered`)
+            res.json({ text: 'User Id is not registered' })
         }
     }).catch(e => {
         console.log(e)
