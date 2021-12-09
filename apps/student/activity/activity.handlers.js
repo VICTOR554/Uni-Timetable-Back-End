@@ -23,6 +23,7 @@ const getModules = function(req, res, next) {
       res.send(e);
     });
 };
+
 const getModuleActivities = async function(
   element,
   start_date_time,
@@ -34,6 +35,7 @@ const getModuleActivities = async function(
   });
   return a;
 };
+
 const getActivities = async function(req, res, next) {
   date_time = req.params.start_date_time;
   start_date_time = moment
